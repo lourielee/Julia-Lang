@@ -1,5 +1,4 @@
 #LCannon.Last update 10.11.20.
-
 using BioSequences
 using FASTX
 
@@ -24,7 +23,7 @@ input = open(FASTA.Reader, filename)
     for record in input
         push!(id, FASTA.identifier(record))
         push!(desc, FASTA.description(record))
-        push!(seq, FASTA.sequence(record));
+        push!(seq, FASTA.sequence(record))
     end
 close(input)
 return record
