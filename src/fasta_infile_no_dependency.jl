@@ -1,57 +1,46 @@
 #*rewrite fasta_infile with no external package dependencies, play around with various julia things along the way
 
 #helper function: reads fasta file to array
-function initialize()
-    infile = "data/SARS-CoV-2/protein/covid_proteins.fasta"
+function initialize(filename)
+    infile = filename
     data = readchomp(infile)
     return split(data, "\n\n")
-
 end
 
-
-#returns array of fasta IDs
-function get_ID()
-    data_array = initialize()
+#returns Array{Any,1} of fasta IDs
+function get_ID(filename)
+    data_array = initialize(filename)
     println(length(data_array))
-    id = []
+    ID = []
     for record in data_array
-        push!(id, first(split(record, " ", limit = 2)))
+        temp = replace(record, ">" => "")
+        push!(ID, first(split(temp, " ", limit = 2)))
     end
-
-    outfile0 = open("scratch/test_fasta_no_dependency_array_len.out", "w")
-    println(outfile0, "&")
-    println(outfile0, data_array)
-    close(outfile0)
-    return id
+    println(typeof(ID))
+    return ID
 end
 
-function get_SEQ()
-    data_array = initialize()
-    SEQ = []
-    outfile = open("scratch/output_no_dependency_forEachInDataArray.out", "w")
-    println(outfile, "OK")
+#returns sequences in fasta as Array{Any,1}
+function get_SEQ(filename)
+    data_array = initialize(filename)
+    RESULT = []
     for record in data_array
-        seq_start = findfirst("\n", record)
-        println(typeof(seq_start))
-        temp = replace(record, "\n" => "")
-        seq_size = length(temp)
-    #    println(seq_start + seq_size)
-        seq = SubString(temp, 1,2)
-        push!(SEQ, seq)
-        #push!(SEQ, replace(record, "\n" => ""))
-        println(outfile, "k")
-        println(outfile, SEQ)
+        temp = last(split(record, "\n", limit = 2))
+        seq = replace(temp, "\n" => "")
+        push!(RESULT, seq)
     end
-
-close(outfile)
+    return RESULT
 end
 
-
-#outfile = open("scratch/output_test_fasta_no_dependency.out", "w")
-#println(outfile, "IDs")
-#println(outfile, id)
-#close(outfile)
-
-
-#get_ID()
-get_SEQ()
+#returns IDs and descriptions in fasta as Array{Any,1}
+function get_ID_DESC(filename)
+    FASTA = initialize(filename)
+    DATA=[]
+    ID_DESC = []
+    for record in FASTA
+        push!(DATA, split(record, "\n"))
+        first_line_fasta = first(split(record, "\n"))
+        push!(ID_DESC, replace(first_line_fasta, ">" => ""))
+    end
+    return ID_DESC
+end
