@@ -1,0 +1,22 @@
+time results for fasta_infile.jl 
+(uses FASTX package)
+input filesize (bytes): 
+15359
+
+fasta_to_array():
+0.000211808
+
+fasta_to_ID_DESC_SEQ_arrays():
+0.034027343
+
+fasta_get_id():
+0.00340348
+
+fasta_get_description():
+0.003554448
+
+fasta_get_sequence():
+0.004002996
+0.00030609
+0.000296099
+0.000320675

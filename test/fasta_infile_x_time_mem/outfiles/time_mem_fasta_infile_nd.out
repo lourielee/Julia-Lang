@@ -1,11 +1,19 @@
+time results for fasta_infile_no_dependency.jl
+(does not use FASTX package)
+input filesize (bytes): 
+15359
+
 initialize():
-0.00028625
+0.003801849
+
 get_ID:
-0.000251112
+0.016393598
+
 get_SEQ():
-0.000267929
+0.01714213
+
 get_ID_SEQ():
-0.000414563
-0.000407137
-0.000406895
-0.00042399
+0.01301992
+0.00040825
+0.000410838
+0.000403216
