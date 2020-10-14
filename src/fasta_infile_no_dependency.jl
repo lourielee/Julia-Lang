@@ -10,13 +10,11 @@ end
 #returns Array{Any,1} of fasta IDs
 function get_ID(filename)
     data_array = initialize(filename)
-    println(length(data_array))
     ID = []
     for record in data_array
         temp = replace(record, ">" => "")
         push!(ID, first(split(temp, " ", limit = 2)))
     end
-    println(typeof(ID))
     return ID
 end
 
@@ -35,12 +33,21 @@ end
 #returns IDs and descriptions in fasta as Array{Any,1}
 function get_ID_DESC(filename)
     FASTA = initialize(filename)
-    DATA=[]
     ID_DESC = []
     for record in FASTA
-        push!(DATA, split(record, "\n"))
         first_line_fasta = first(split(record, "\n"))
         push!(ID_DESC, replace(first_line_fasta, ">" => ""))
     end
     return ID_DESC
 end
+
+
+#time/mem checks:
+println("initialize():")
+@time initialize("data/SARS-CoV-2/protein/covid_proteins.fasta")
+println("get_ID:")
+@time get_ID("data/SARS-CoV-2/protein/covid_proteins.fasta")
+println("get_SEQ():")
+@time get_SEQ("data/SARS-CoV-2/protein/covid_proteins.fasta")
+println("get_ID_SEQ():")
+@time get_ID_DESC("data/SARS-CoV-2/protein/covid_proteins.fasta")
