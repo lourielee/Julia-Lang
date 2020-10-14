@@ -40,14 +40,3 @@ function get_ID_DESC(filename)
     end
     return ID_DESC
 end
-
-
-#time/mem checks:
-println("initialize():")
-@time initialize("data/SARS-CoV-2/protein/covid_proteins.fasta")
-println("get_ID:")
-@time get_ID("data/SARS-CoV-2/protein/covid_proteins.fasta")
-println("get_SEQ():")
-@time get_SEQ("data/SARS-CoV-2/protein/covid_proteins.fasta")
-println("get_ID_SEQ():")
-@time get_ID_DESC("data/SARS-CoV-2/protein/covid_proteins.fasta")
