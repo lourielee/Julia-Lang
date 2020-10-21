@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 fasta_to_array():
 asta_infile.jl 
+=======
+time results for fasta_infile.jl 
+>>>>>>> 49d63d2240d2054f0f15bccb5e0e0e95e5c58eab
 (uses FASTX package)
 input filesize (bytes): 
 15359
