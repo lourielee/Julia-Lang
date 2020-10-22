@@ -10,8 +10,8 @@ sortDescending_inPlace(x) = sort!(x, rev = true);
 indexSort(x) = sortperm(x);
 
 j = [1]
-arr = rand(1000000)
-
+arr = rand(100000)
+println("OK")
 
 #compile before timing
 sortAscending(j)
@@ -20,6 +20,7 @@ sortDescending(j)
 sortDescending_inPlace(j)
 indexSort(j)
 
+#=
 @time sortAscending(arr)
 shuffle!(arr)
 
@@ -33,7 +34,14 @@ shuffle!(arr)
 shuffle!(arr)
 
 @time indexSort(arr)
-@time shuffle!(arr)
+@time shuffle!(arr) =#
 
 
 #specify quicksort, merge, etc; nan arrays
+
+@time sort(arr, alg = InsertionSort)
+#shuffle!(arr)
+
+#@time sort!(arr, alg = InsertionSort)
+#shuffle!(arr)
+println("ok")
