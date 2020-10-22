@@ -1,0 +1,4 @@
+21.535379494
+
+
+output @elapsed process_file linesToArray() 20 mil lines
