@@ -1,0 +1,17 @@
+sorts_time.jl output
+#basic sorting of rand array of 1,000,000 Float64 :
+
+#sort
+#sort! (in place)
+#sort descending
+#sort! descending (in place)
+#permutation sort
+#... shuffle!
+
+
+0.071632 seconds (1.11 k allocations: 7.684 MiB)
+0.065443 seconds (717 allocations: 42.907 KiB)
+0.074886 seconds (20.62 k allocations: 8.801 MiB)
+0.068812 seconds (11.87 k allocations: 710.947 KiB)
+0.125728 seconds (699 allocations: 7.670 MiB)
+0.015183 seconds
