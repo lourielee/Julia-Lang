@@ -1,15 +1,6 @@
-#input numerical array, do various things with it. purpose: try different Julia things,
-#   maybe boilerplate for other
-
-
-function readToArray()
-
-    infile = ("scratch/randNums100000.output")
-    data = readchomp(infile)
-    data = replace(data, "[" => "")
-    data = replace(data, "]" => "")
-    return split(data, ",")
-end
+#various julia sorts/ performance
+#output: test/sorts_time.output
+using Random
 
 #different sorts
 sortAscending(x) = sort(x);
@@ -19,7 +10,8 @@ sortDescending_inPlace(x) = sort!(x, rev = true);
 indexSort(x) = sortperm(x);
 
 j = [1]
-numSet = readToArray();
+arr = rand(1000000)
+
 
 #compile before timing
 sortAscending(j)
@@ -28,12 +20,20 @@ sortDescending(j)
 sortDescending_inPlace(j)
 indexSort(j)
 
-@time sortAscending(rand(1000000))
-@time sortAscending(numSet)
-@time sortAscending_inPlace(rand(1000000))
-@time sortDescending(rand(1000000))
-@time sortDescending_inPlace(rand(1000000))
-@time indexSort(rand(1000000))
+@time sortAscending(arr)
+shuffle!(arr)
+
+@time sortAscending_inPlace(arr)
+shuffle!(arr)
+
+@time sortDescending(arr)
+shuffle!(arr)
+
+@time sortDescending_inPlace(arr)
+shuffle!(arr)
+
+@time indexSort(arr)
+@time shuffle!(arr)
 
 
-#TODO: create "random" shuffle!/scramble function(s)
+#specify quicksort, merge, etc; nan arrays
