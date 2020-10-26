@@ -6,7 +6,7 @@ data = tokensToArray(infile)
 arr = push!(findall(x->occursin("1",x), data))
 
 function put_channel(c::Channel)
-    for i=1:length(arr) #tasks
+    @async for i=1:length(arr) #tasks: @async
         put!(c, arr[i])
     end
 end
